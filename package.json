@@ -1,0 +1,23 @@
+{
+  "name": "teste_electron",
+  "version": "1.0.0",
+  "description": "Tentando aprender Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MrsTabitha/teste_electron.git"
+  },
+  "author": "Talita Müller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MrsTabitha/teste_electron/issues"
+  },
+  "homepage": "https://github.com/MrsTabitha/teste_electron#readme",
+  "devDependencies": {
+    "electron": "^36.2.1"
+  }
+}
