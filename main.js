@@ -1,5 +1,8 @@
-//console.log("Processo Principal")
+console.log("Processo Principal")
+console.log(`Electron: ${process.versions.electron}`)
+
 const { app, BrowserWindow, nativeTheme, Menu, shell } = require('electron')
+const path = require('node:path')
 
 // Janela Principal
 const createWindow = () => {
@@ -8,6 +11,9 @@ const createWindow = () => {
         width: 800,
         height: 600,
         icon: './src/public/img/desktop.png',
+        webPreferences: {
+            preload: path.join(__dirname, 'preload.js')
+        }
         //resizable: false,
         //autoHideMenuBar: true,
         //titleBarStyle: 'hidden'
