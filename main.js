@@ -1,7 +1,8 @@
 console.log("Processo Principal")
 console.log(`Electron: ${process.versions.electron}`)
 
-const { app, BrowserWindow, nativeTheme, Menu, shell } = require('electron')
+const { app, BrowserWindow, nativeTheme, Menu, shell, ipcMain } = require('electron')
+const { IpcMainServiceWorker } = require('electron/main')
 const path = require('node:path')
 
 // Janela Principal
@@ -58,6 +59,17 @@ const childWindow = () => {
 app.whenReady().then(() => {
     createWindow()
     //aboutWindow()
+
+    //IPC >>>>>>>>>>>>>>>>>>>>>>>>>>
+    ipcMain.on('open-child', () => {
+        childWindow()
+    })
+
+    ipcMain.on('renderer-message', (event, message) => {
+        console.log(`Processo principal recebeu uma mensagem: ${message}`)
+        event.reply('main-message', "Olá renderizador")
+    })
+    //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()

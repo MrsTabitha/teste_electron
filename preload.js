@@ -1,8 +1,11 @@
-const { contextBridge } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 
 // Processos 
 contextBridge.exposeInMainWorld('api', {
-    verElectron: () => process.versions.electron
+    verElectron: () => process.versions.electron,
+    open: () => ipcRenderer.send('open-child'),
+    send: (message) => ipcRenderer.send('renderer-message', message),
+    on: (message) => ipcRenderer.on('main-message', message)
 })
 
 // Manipução do DOM
